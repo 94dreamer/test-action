@@ -63,4 +63,3 @@ jobs:
           body: |
             .... 打包好了撒大山大山的
           number: ${{ github.event.number }}
-      - run: exit 1;
