@@ -61,5 +61,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
-            .... 打包好了撒大山大山的
+            .... 打
           number: ${{ github.event.number }}
