@@ -61,5 +61,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
-            ....
+            .... 打包好了
           number: ${{ github.event.number }}
+      - run: exit 1;
