@@ -41,7 +41,7 @@ jobs:
           echo the preview URL is $DEPLOY_DOMAIN
 
       - name: update status comment
-        uses: actions-cool/maintain-one-comment@v1.1.0
+        uses: actions-cool/maintain-one-comment@v2.0.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
@@ -51,7 +51,7 @@ jobs:
           rm -rf _site/
       - name: The job failed
         if: ${{ failure() }}
-        uses: actions-cool/maintain-one-comment@v1.1.0
+        uses: actions-cool/maintain-one-comment@v2.0.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
@@ -77,7 +77,7 @@ jobs:
       - run: echo ${{ steps.pr.outputs.id }}
 
       - name: The job failed
-        uses: actions-cool/maintain-one-comment@v1.1.0
+        uses: actions-cool/maintain-one-comment@v2.0.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
