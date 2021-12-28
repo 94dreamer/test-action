@@ -35,7 +35,7 @@ jobs:
         run: npm install
         shell: bash
 
-      - run: exit 1;
+      # - run: exit 1;
 
       - run: |
           zip -r _site.zip _site
