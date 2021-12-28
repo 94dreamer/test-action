@@ -2,7 +2,7 @@ name: PREVIEW_PUBLISH
 
 on:
   workflow_run:
-    workflows: ['MAIN_PULL_REQUEST']
+    workflows: ['MAIN_PULL_REQUESTS']
     types:
       - completed
 
@@ -22,7 +22,7 @@ jobs:
       - run: echo $(<pr-id.txt)
       - run: echo ${{ github.event.workflow_run.workflow_id }}
       - run: echo ${{ steps.pr.outputs.id }}
-      
+
       - name: download _site artifact
         uses: dawidd6/action-download-artifact@v2
         with:
