@@ -2,7 +2,7 @@ name: PREVIEW_PUBLISH
 
 on:
   workflow_run:
-    workflows: ['MAIN_PULL_REQUESTS']
+    workflows: ['MAIN_PULL_REQUEST']
     types:
       - completed
 
