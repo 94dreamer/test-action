@@ -11,6 +11,7 @@ jobs:
   MAIN_PULL_REQUEST:
     needs: setup
     runs-on: ubuntu-latest
-    steps:        
+    steps:      
+      - run: pwd  
       - run: node -v
         shell: bash
