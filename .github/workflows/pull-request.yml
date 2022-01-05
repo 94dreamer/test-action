@@ -7,7 +7,7 @@ on:
 
 jobs:
   setup:
-    uses: 94dreamer/test-action/.github/workflows/lint.yml@main
+    uses: 94dreamer/test-action/.github/workflows/test-install.yml@main
   MAIN_PULL_REQUEST:
     needs: setup
     runs-on: ubuntu-latest
