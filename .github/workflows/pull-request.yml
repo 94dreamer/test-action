@@ -16,4 +16,3 @@ jobs:
         run: npm install
         shell: bash
       - run: node -v
-      - run: echo ${{ node -v }}
