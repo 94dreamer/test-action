@@ -15,3 +15,4 @@ jobs:
       - run: pwd  
       - run: node -v
         shell: bash
+      - run: ls
