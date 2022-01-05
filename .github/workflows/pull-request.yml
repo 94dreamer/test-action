@@ -11,9 +11,8 @@ jobs:
   MAIN_PULL_REQUEST:
     needs: setup
     runs-on: ubuntu-latest
-    steps:
-      - name: Install dependencies
-        run: npm install
-        shell: bash
+    steps:      
+      - run: pwd  
       - run: node -v
-      - run: echo ${{ node -v }}
+        shell: bash
+      - run: ls
