@@ -7,6 +7,7 @@ jobs:
   init:
     runs-on: ubuntu-latest
     steps:
+      - run: echo ${{ github.event.ref_type }}
       - uses: actions/checkout@v2
         with:
           submodules: recursive
