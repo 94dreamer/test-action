@@ -8,7 +8,13 @@ on:
 jobs:
   aaaa:
     runs-on: ubuntu-latest
-    steps:    
+    steps:   
+      - uses: actions/checkout@v2 
+      - run: |
+          echo $RUNNER_TEMP
+          echo $GITHUB_WORKSPACE
+          echo $RUNNER_TOOL_CACHE
+        shell: bash
       - run: repository=${{github.repository}} && echo ${repository#*/}
         shell: bash
       - run: echo ${${{github.repository}}#*/}
