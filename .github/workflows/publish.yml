@@ -24,9 +24,8 @@ jobs:
           repository=${{github.repository}}
           project_name=${repository#*/}
           ref_name=${{ github.ref_name }}
-          tag_name=${ref_name//../_}
+          tag_name=${ref_name//./_}
           export DEPLOY_DOMAIN=https://$tag_name-$project_name.surge.sh
           echo $DEPLOY_DOMAIN
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - run: npm run build
       
