@@ -2,14 +2,9 @@ name: PREVIEW
 
 on:
   workflow_call:
-    # inputs:
-      # workflow_run_event:
-      #   required: true
-      #   type: string
-        # default: 'pull_request'
-    # secrets:
-    #   TDESIGN_SURGE_TOKEN:
-    #     required: true
+    secrets:
+      TDESIGN_SURGE_TOKEN:
+        required: true
 
 jobs:
   preview-success:
@@ -41,6 +36,7 @@ jobs:
         run: |
           repository=${{github.repository}}
           project_name=${repository#*/}
+          echo $project_name
           export DEPLOY_DOMAIN=https://preview-pr${{ steps.pr.outputs.id }}-$project_name.surge.sh
           npx surge --project ./_site --domain $DEPLOY_DOMAIN --token ${{ secrets.TDESIGN_SURGE_TOKEN }}
           echo the preview URL is $DEPLOY_DOMAIN

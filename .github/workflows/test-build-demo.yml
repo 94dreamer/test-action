@@ -14,4 +14,4 @@ jobs:
     steps:
       - run: echo ${{ secrets.TDESIGN_SURGE_TOKEN }}
   call-test-build:
-    uses: 94dreamer/test-action/.github/workflows/test-build.yml@main
+    uses: 94dreamer/test-action/.github/test-build.yml@main
