@@ -1,0 +1,32 @@
+name: PUBLISH
+
+on:
+  workflow_call:
+    secrets:
+      TDESIGN_SURGE_TOKEN:
+        required: true
+
+jobs:
+  TAG_PUSH:
+    runs-on: ubuntu-latest
+    if: github.event.ref_type == 'tag'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: npm install
+      - name: upload surge service
+        id: deploy
+        run: |
+          repository=${{github.repository}}
+          project_name=${repository#*/}
+          ref_name=${{ github.ref_name }}
+          tag_name=${ref_name//../_}
+          export DEPLOY_DOMAIN=https://$tag_name-$project_name.surge.sh
+          echo $DEPLOY_DOMAIN
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: npm run build
+      
