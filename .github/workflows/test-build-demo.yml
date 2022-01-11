@@ -9,5 +9,9 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
+  echowanzhe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ secrets.TDESIGN_SURGE_TOKEN }}
   call-test-build:
     uses: 94dreamer/test-action/.github/workflows/test-build.yml@main
