@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/94dreamer/test-action/issues"
   },
-  "homepage": "https://github.com/94dreamer/test-action#readme"
+  "homepage": "https://github.com/94dreamer/test-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0",
+    "@octokit/rest": "^18.12.0"
+  }
 }
