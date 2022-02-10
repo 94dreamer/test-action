@@ -4,6 +4,7 @@
 const { Octokit } = require("@octokit/rest");
 const { exec } = require("child_process");
 const { ReposEnum } = require("./const");
+const dayjs = require("dayjs");
 
 class DailyClose {
   constructor({ wxhook, token, octokit }) {
@@ -13,13 +14,7 @@ class DailyClose {
     this.chatid = "";
   }
   async getData() {
-    const dateString = new Date(new Date().getTime() - 1000 * 60 * 60 * 24)
-      .toLocaleDateString()
-      .split("/")
-      .map((n) => (n < 10 ? "0" + n : n))
-      .join("-");
-
-    console.log(dateString, "dateString");
+    const dateString = dayjs().subtract(1, "day").format("YYYY-MM-DD");
     const allList = await Promise.all(
       ReposEnum.map((repo) =>
         this.octokit.rest.issues
@@ -40,7 +35,6 @@ class DailyClose {
           })
       )
     );
-    console.log("allList", typeof allList[0], typeof allList[0][0]);
     return allList.reduce(function (total, item) {
       return [...total, ...item];
     }, []);
@@ -70,12 +64,10 @@ ${data
     let res;
     try {
       res = await this.getData();
-      console.log(typeof res, res.length);
     } catch (error) {
       console.log(error, "error");
     }
     if (!res) return false;
-    // console.log(JSON.stringify(res), "res");
     const template = await this.render(res);
     exec(
       `curl ${this.wxhook} \
@@ -88,8 +80,6 @@ ${data
             }
        }'`,
       (error, stdout, stderr) => {
-        // console.log("template", template);
-        // console.log("content", template.replaceAll('"', "'"));
         if (error) {
           console.error(`exec error: ${error}`);
           return;
