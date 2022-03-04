@@ -10,9 +10,8 @@ jobs:
   mark-duplicate:
     runs-on: ubuntu-latest
     steps:
-      - name: 获取信息
-      - name: 自动分配 or 提醒 @;
-      - run: echo ${{github.event.issue}}
+      - name: 1获取信息 2自动分配 or 提醒 @;
+        run: echo ${{github.event.issue}}
       - name: Add assigness
         uses: actions-cool/issues-helper@v3
         with:
