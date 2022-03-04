@@ -1,0 +1,29 @@
+# force copy from tencent/tdesign
+# 当在 issue 的 comment 回复类似 `Duplicate of #111` 这样的话，issue 将被自动打上 重复提交标签 并且 cloese
+name: Issue Add Assigness
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  mark-duplicate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 获取信息
+      - name: 自动分配 or 提醒 @;
+      - run: echo ${{github.event.issue}}
+      - name: Add assigness
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'add-assignees'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          assignees: '94dreamer'
+      - uses: wow-actions/auto-comment@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          issuesOpened: |
+            👋 @{{ author }}
+            Thank you for raising an issue. We will will investigate into the matter and get back to you as soon as possible.
+            Please make sure you have given us as much context as possible.
