@@ -6,19 +6,24 @@ on:
   issues:
     types: [opened, edited]
 
+# 1获取信息 仓库/标题/  2 拉取接口 输出贡献者  3. assgin 或者 提醒@;
+
 jobs:
   mark-duplicate:
     runs-on: ubuntu-latest
     steps:
-      - name: 1获取信息 仓库/标题/  2 拉取接口 输出贡献者  3. assgin 或者 提醒@;
+      - name: 标题
         run: echo ${{github.event.issue.title}} 
-      - name: '仓库'
+      - name: 仓库
         run: |
           repository=${{github.repository}}
           project_name=${repository#*/}
-          echo $repository $project_name
+          echo $project_name
+      - run: ls
+      - run: pwd
       - name: 拉借口 判断仓库 组件 输出贡献者
-        run: node index.js
+        run: node ./index.js
+        
       - name: Add assigness
         uses: actions-cool/issues-helper@v3
         with:
