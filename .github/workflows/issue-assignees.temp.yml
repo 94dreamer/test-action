@@ -19,11 +19,11 @@ jobs:
           repository=${{github.repository}}
           project_name=${repository#*/}
           echo $project_name
-      - run: ls
+      - run: ll
       - run: pwd
       - name: 拉借口 判断仓库 组件 输出贡献者
         run: node ./index.js
-        
+
       - name: Add assigness
         uses: actions-cool/issues-helper@v3
         with:
