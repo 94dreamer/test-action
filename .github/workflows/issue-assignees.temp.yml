@@ -12,33 +12,35 @@ jobs:
   mark-duplicate:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      # - uses: actions/setup-node@v2
       - name: 标题
       # https://docs.github.com/cn/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#issues
         run: echo ${{github.event.issue.title}} 
       - run: echo ${{github.event.repository.name}}
-      - name: 仓库
-        run: |
-          repository=${{github.repository}}
-          project_name=${repository#*/}
-          echo $project_name
-      - run: ll
+      # - name: 仓库
+      #   run: |
+      #     repository=${{github.repository}}
+      #     project_name=${repository#*/}
+      #     echo $project_name
       - run: pwd
+      - run: node -v
       - name: 拉借口 判断仓库 组件 输出贡献者
         run: node ./index.js
 
-      - name: Add assigness
-        uses: actions-cool/issues-helper@v3
-        with:
-          actions: 'add-assignees'
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.issue.number }}
-          assignees: '94dreamer'
-      - uses: wow-actions/auto-comment@v1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          issuesOpened: |
-            👋 @{{ author }}
-            找到了组件对接人
-            没有找到对接人。
-            Thank you for raising an issue. We will will investigate into the matter and get back to you as soon as possible.
-            Please make sure you have given us as much context as possible.
+      # - name: Add assigness
+      #   uses: actions-cool/issues-helper@v3
+      #   with:
+      #     actions: 'add-assignees'
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     issue-number: ${{ github.event.issue.number }}
+      #     assignees: '94dreamer'
+      # - uses: wow-actions/auto-comment@v1
+      #   with:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     issuesOpened: |
+      #       👋 @{{ author }}
+      #       找到了组件对接人
+      #       没有找到对接人。
+      #       Thank you for raising an issue. We will will investigate into the matter and get back to you as soon as possible.
+      #       Please make sure you have given us as much context as possible.
