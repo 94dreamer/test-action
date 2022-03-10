@@ -1,0 +1,44 @@
+# force copy from tencent/tdesign
+# 当在 issue 的 comment 回复类似 `Duplicate of #111` 这样的话，issue 将被自动打上 重复提交标签 并且 cloese
+name: Issue Add Assigness
+
+on:
+  workflow_call:
+    inputs:
+      project_name:
+        required: true
+        type: string
+      issue_title:
+        required: true
+        type: string
+
+jobs:
+  mark-duplicate:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{github.event.repository.name}} ${{github.event.issue.title}}
+      - run: echo ${{ secrets.GITHUB_TOKEN }}
+      - run: echo ${{ github.event.issue.number }}
+      - uses: actions/checkout@v2
+      # https://docs.github.com/cn/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#issues
+      - uses: ./.github/actions/get-contributor
+        id: contributors
+        with:
+          project_name: ${{github.event.repository.name}}
+          issue_title: ${{github.event.issue.title}}
+      - run: echo ${{ steps.contributors.outputs.contributors }}
+      - name: Add assigness
+        if: steps.contributors.outputs.contributors != ''
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'add-assignees'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          assignees: ${{ steps.contributors.outputs.contributors }}
+
+      - uses: wow-actions/auto-comment@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          issuesOpened: |
+            👋 @{{ author }}，感谢你给我们提出 issue。
+            请根据 issue 模版确保问题的背景信息的完善，我们将调查并尽快回复你。

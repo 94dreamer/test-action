@@ -1,0 +1,15 @@
+name: 'get-contributors'
+description: 'get-contributors'
+inputs:
+  project_name:
+    description: 'repo name'
+    required: true
+  issue_title:
+    description: 'issue title'
+    required: true
+outputs:
+  contributors:
+    description: '贡献者'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
