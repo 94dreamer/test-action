@@ -16,9 +16,6 @@ jobs:
   mark-duplicate:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{github.event.repository.name}} ${{github.event.issue.title}}
-      - run: echo ${{ secrets.GITHUB_TOKEN }}
-      - run: echo ${{ github.event.issue.number }}
       - uses: actions/checkout@v2
       # https://docs.github.com/cn/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#issues
       - uses: ./.github/actions/get-contributor
