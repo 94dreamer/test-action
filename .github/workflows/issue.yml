@@ -17,4 +17,3 @@ jobs:
           git commit -m "chore: readme's changes"
           git push origin master
           echo "💾 pushed readme's changes"
-      - done
