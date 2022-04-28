@@ -9,6 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Commit and push if needed
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         run: |
           echo "$(echo '${{ github.event.issue.title }}' | cat - README.md)" > README.md
           git add .
