@@ -1,4 +1,4 @@
-name: Issue Help wanted
+name: Issue
 on:
   issues:
     types:

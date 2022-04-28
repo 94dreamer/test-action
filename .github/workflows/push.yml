@@ -1,9 +1,9 @@
-name: Test GitHub Action
+name: push
 on: [push]
 
 jobs:
   run:
-    name: Spell Check with Typos
+    name: push
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
