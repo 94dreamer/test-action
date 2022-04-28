@@ -15,5 +15,6 @@ jobs:
           git config --local user.email "503633021@qq.com"
           git config --local user.name "94dreamer"
           git commit -m "chore: readme's changes"
-          git push
+          git push origin master
           echo "💾 pushed readme's changes"
+      - done
