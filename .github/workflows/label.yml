@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        with:
+          token: ${{ secrets.PERSONAL_TOKEN }}
       - name: Commit and push if needed
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
