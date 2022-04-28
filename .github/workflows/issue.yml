@@ -1,0 +1,19 @@
+name: Issue Help wanted
+on:
+  issues:
+    types:
+      - labeled
+jobs:
+  add-comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Commit and push if needed
+        run: |
+          echo "$(echo '${{ github.event.issue.title }}' | cat - README.md)" > CHANGELOG.md
+          git add .
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "chore: readme's changes"
+          git push
+          echo "💾 pushed readme's changes"
