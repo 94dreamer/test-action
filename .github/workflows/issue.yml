@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Add
       - name: Commit and push if needed
         run: |
           echo "$(echo '${{ github.event.issue.title }}' | cat - README.md)" > CHANGELOG.md
