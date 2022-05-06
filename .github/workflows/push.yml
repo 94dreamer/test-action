@@ -1,8 +1,0 @@
-name: push
-on: [push]
-
-jobs:
-  echo-comment:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "sdasdasdadas"

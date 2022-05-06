@@ -1,0 +1,21 @@
+name: Auto Release
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  generator:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ toJSON(github.event) }}
+      - run: |
+          curl ${{ secrets.WX_HOOK_URL }} -H 'Content-Type: application/json' \
+          -d '
+          {
+                "msgtype": "markdown",
+                "chatid": "wrkSFfCgAA-QNmuIjascLNFfmkFVQT5A",
+                "markdown": {
+                    "content": "${{ github.event.release }}"
+                }
+          }'
