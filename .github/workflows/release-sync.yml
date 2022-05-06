@@ -1,12 +1,14 @@
-name: Auto Release
-
-on: release
+on:
+  release:
+    types:
+      - created
 
 jobs:
   generator:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ toJSON(github.event) }}
+      - run: echo 111
+# - run: echo ${{ toJSON(github.event) }}
 # - run: |
 #     curl ${{ secrets.WX_HOOK_URL }} -H 'Content-Type: application/json' \
 #     -d '
